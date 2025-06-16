@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Header } from "./components/Header";
 import { RecentlyAdded } from "./components/RecentlyAdded";
@@ -14,15 +14,6 @@ import {
 } from "./store/slices/tradeSlice";
 import type { Token } from "./types";
 
-interface TokensResponse {
-  tokens: Token[];
-  total: number;
-}
-
-interface PriceResponse {
-  price: string;
-}
-
 const ITEMS_PER_PAGE = 15;
 
 function App() {
@@ -33,7 +24,12 @@ function App() {
   const { isBuyMode, amount, slippage } = useAppSelector(
     (state) => state.trade
   );
-  const { walletConnected } = useAppSelector((state) => state.app);
+  const { walletConnected, darkMode } = useAppSelector((state) => state.app);
+
+  // Theme effect
+  useEffect(() => {
+    document.body.setAttribute("theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
 
   // Fetch tokens using React Query
   const { data: tokensData, isLoading } = useQuery({
@@ -85,14 +81,14 @@ function App() {
   const receiveAmount = priceData?.price ?? "0";
 
   return (
-    <>
+    <div className="bg-background text-text italic">
       <Header
         onDarkModeToggle={handleDarkModeToggle}
         onConnectWallet={handleConnectWallet}
       />
 
-      <main className="flex flex-col items-center min-h-screen p-4 md:p-10 bg-[var(--background)] text-[var(--foreground)]">
-        <div className="flex flex-col md:flex-row gap-6 w-full max-w-5xl mx-auto items-start h-auto md:h-[750px]">
+      <main className="flex flex-col items-center min-h-screen p-4 md:p-10">
+        <div className="flex flex-col md:flex-row gap-4 w-full max-w-4xl mx-auto items-start h-auto md:h-[750px]">
           {/* Sidebar with Recently Added */}
           <div className="w-full md:w-[340px] h-[500px] md:h-full">
             <RecentlyAdded
@@ -105,7 +101,7 @@ function App() {
           </div>
 
           {/* Main Trading Area */}
-          <div className="flex-1 h-auto">
+          <div className="flex-1 h-auto w-full">
             <TradeBox
               isBuyMode={isBuyMode}
               onModeChange={(value) => dispatch(setIsBuyMode(value))}
@@ -119,7 +115,7 @@ function App() {
           </div>
         </div>
       </main>
-    </>
+    </div>
   );
 }
 

@@ -8,6 +8,31 @@
   font-display: swap;
 }
 
+:root,
+[theme="light"] {
+  --color-background: #fff;
+  --color-text: #171717;
+  --color-gray: #6a7282;
+  --color-blue: #155dfc;
+  --color-light-gray: #a3a3a3;
+}
+
+[theme="dark"] {
+  --color-background: #0a0a0a;
+  --color-text: #ededed;
+  --color-gray: #6a7282;
+  --color-blue: #155dfc;
+  --color-light-gray: #a3a3a3;
+}
+
+@theme {
+  --color-background: #fff;
+  --color-text: #171717;
+  --color-gray: #6a7282;
+  --color-blue: #155dfc;
+  --color-light-gray: #a3a3a3;
+}
+
 * {
   font-family: "Sartoshi Script", cursive;
 }

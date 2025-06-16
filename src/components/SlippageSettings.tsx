@@ -17,16 +17,10 @@ export const SlippageSettings = ({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="slippage-label-invert flex items-center gap-2 text-xl font-bold bg-transparent border-none shadow-none focus:outline-none"
+        className="flex items-center gap-2 font-bold bg-transparent border-none shadow-none focus:outline-none"
       >
         Slippage Settings
-        <span
-          className={["transition-transform", isOpen ? "rotate-180" : ""].join(
-            " "
-          )}
-        >
-          ▼
-        </span>
+        <span className={`${isOpen ? "rotate-180" : ""}`}>▼</span>
       </button>
 
       {isOpen && (
@@ -36,19 +30,15 @@ export const SlippageSettings = ({
               key={value}
               type="button"
               onClick={() => onSlippageChange(value)}
-              className={[
-                "tradebox-btn-invert quick-btn-invert",
-                "px-2 py-1 rounded text-lg border-2 font-bold transition",
-                "hover:bg-black hover:text-white",
-                "dark:hover:bg-white dark:hover:text-black",
-                slippage === value ? "quick-btn-selected" : "",
-              ].join(" ")}
+              className={`px-2 py-1 rounded text-sm border-2 font-bold transition ${
+                slippage === value ? "quick-btn-selected" : ""
+              }`}
             >
               {value}%
             </button>
           ))}
           <input
-            className="input-invert border-2 w-15 px-2 py-1 rounded-2xl text-lg outline-none font-mono transition focus:border-blue-500"
+            className="border-2 w-14 px-2 py-1 rounded-2xl text-sm outline-none transition"
             min={0}
             max={5}
             step="0.1"
