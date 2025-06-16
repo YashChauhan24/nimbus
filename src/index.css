@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Sartoshi Script";
+  src: url("/fonts/SartoshiScript.otf") format("opentype");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+* {
+  font-family: "Sartoshi Script", cursive;
+}
