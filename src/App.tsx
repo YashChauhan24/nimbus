@@ -13,6 +13,7 @@ import {
   setSelectedToken,
 } from "./store/slices/tradeSlice";
 import type { Token } from "./types";
+import { ShareBox } from "./components/ShareBox";
 
 const ITEMS_PER_PAGE = 15;
 
@@ -88,7 +89,7 @@ function App() {
       />
 
       <main className="flex flex-col items-center min-h-screen p-4 md:p-10">
-        <div className="flex flex-col md:flex-row gap-4 w-full max-w-4xl mx-auto items-start h-auto md:h-[750px]">
+        <div className="flex flex-col md:flex-row gap-4 w-full max-w-4xl mx-auto items-start h-auto md:h-[750px] mb-5">
           {/* Sidebar with Recently Added */}
           <div className="w-full md:w-[340px] h-[500px] md:h-full">
             <RecentlyAdded
@@ -114,6 +115,13 @@ function App() {
             />
           </div>
         </div>
+        <ShareBox
+          contractAddress="0x96f4A78c19a273D95fB082800911dB66648b0670"
+          coinName="tek"
+          siteUrl="https://etherscan.io/token/0x96f4A78c19a273D95fB082800911dB66648b0670"
+          // paidAmount={500}
+          displayText="buy $tek, we going to the moon.dev based.soon news"
+        />
       </main>
     </div>
   );
